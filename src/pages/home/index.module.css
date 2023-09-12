@@ -1,0 +1,22 @@
+.content {
+ width: 80%;
+ margin: 30px auto;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: flex-start;
+ gap: 0 50px;
+}
+
+.content h2 {
+ width: 100%;
+ margin: 20px 0;
+}
+
+.content p {
+ width: 100%;
+ margin: 10px 0 50px 0;
+}
+
+.content div {
+ width: 250px;
+}
