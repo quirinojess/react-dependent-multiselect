@@ -12,7 +12,7 @@ export function RoutesConfig() {
  ];
 
  return (
-  <Routes>
+  <Routes basename={process.env.PUBLIC_URL}>
    {ROUTES.map(route => (
     <Route
      key={route.path}
