@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
-import { Icons } from "../../assets/icons/icons";
 import { filterService } from "../../services/filters";
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
  idClear?: string;
  required: boolean;
- value: string[] | string;
+ value: string[];
 };
 
 export function Multiselect({
@@ -29,6 +29,8 @@ export function Multiselect({
  required,
  value,
 }: Props) {
+ const selectRef = useRef<HTMLInputElement>(null);
+ const optionsRef = useRef<HTMLInputElement>(null);
  const [showOptions, setShowOptions] = useState(false);
  const [selectedItems, setSelectedItems] = useState<boolean[]>([]);
  const [listOptions, setListOptions] = useState<
@@ -36,9 +38,8 @@ export function Multiselect({
  >([]);
  const [namesSelecteds, setNamesSelecteds] = useState<string[]>([]);
 
- async function load(type: string, idDependent: string[]) {
+ async function loadOptions(type: string, idDependent: string[]) {
   const result = await filterService.getForMultiSelect(type, idDependent);
-
   if (result) {
    setListOptions([{ label: "Select All", value: "" }, ...result]);
   }
@@ -52,23 +53,17 @@ export function Multiselect({
 
  function clickShowOptions(type: string, idDependent?: string[]) {
   if (idDependent) {
-   load(type, idDependent);
+   loadOptions(type, idDependent);
   } else if (!idDependent) {
-   load(type, []);
+   loadOptions(type, []);
   }
 
-  if (showOptions) {
-   setShowOptions(false);
-  }
-  if (!showOptions) {
-   setShowOptions(true);
-  }
+  setShowOptions(true);
  }
 
  function clickCheckbox(item: number, name: string) {
   const verifyItem = [...selectedItems];
   const verifyNames = [...namesSelecteds];
-
   if (verifyItem[item] === false) {
    if (name !== "Select All") {
     verifyItem[item] = true;
@@ -110,20 +105,16 @@ export function Multiselect({
  function handleSubmit() {
   const itensTrue: number[] = [];
   const selectedOptions: string[] = [];
-
   selectedItems.forEach((item, index) => {
    if (item === true) {
     itensTrue.push(index);
    }
   });
-
   listOptions.forEach((item, index) => {
    if (itensTrue.includes(index)) {
     selectedOptions.push(item.value);
    }
-
    handleSubmitOptions(id, selectedOptions, idClear);
-   setShowOptions(false);
   });
  }
 
@@ -135,78 +126,101 @@ export function Multiselect({
  }
 
  useEffect(() => {
-  if (value.length === 0 || value === "") {
+  if (value.length === 0) {
+   ("setou tudo");
    setSelectedItems([]);
    setNamesSelecteds([]);
-   setShowOptions(false);
   }
  }, [value]);
 
+ useEffect(() => {
+  handleSubmit();
+ }, [showOptions]);
+
+ const pageClickEvent = (event: any) => {
+  if (event.type === "click") {
+   if (
+    showOptions &&
+    selectRef.current !== null &&
+    !selectRef.current.innerHTML.includes(event.target.innerHTML)
+   ) {
+    setShowOptions(false);
+   }
+  }
+ };
+
+ useEffect(() => {
+  window.addEventListener("click", pageClickEvent);
+  return () => window.addEventListener("click", pageClickEvent);
+ });
+
  return (
-  <div>
+  <div className={styles.selectContainer}>
    <div className={styles.label}>
     {label} {required ? "*" : ""}
    </div>
-   <div className={styles.select}>
+   <div className={styles.selectClick} ref={selectRef}>
     <div
-     className={styles.selectPlaceholder}
+     className={styles.select}
      onClick={() => clickShowOptions(typeOption, idDependentOption)}
      onKeyDown={() => clickShowOptions(typeOption, idDependentOption)}
      role="button"
      tabIndex={0}>
-     {namesSelecteds.length <= 0 ? (
-      "Select options"
-     ) : (
+     <div
+      className={styles.selectPlaceholder}
+      onClick={() => clickShowOptions(typeOption, idDependentOption)}
+      onKeyDown={() => clickShowOptions(typeOption, idDependentOption)}
+      role="button"
+      tabIndex={0}>
+      {namesSelecteds.length <= 0 ? (
+       "Select options"
+      ) : (
+       <ul>
+        {namesSelecteds.map(item => (
+         <li key={item}>{item}</li>
+        ))}
+       </ul>
+      )}
+     </div>
+     {namesSelecteds.length > 0 ? (
+      <div
+       onClick={() => handleClear()}
+       onKeyDown={() => handleClear()}
+       role="button"
+       tabIndex={0}
+       className={styles.selectClear}>
+       <span className="material-symbols-outlined">close</span>
+      </div>
+     ) : null}
+     <div className={styles.selectOpen}>
+      {!showOptions ? (
+       <span className="material-symbols-outlined">expand_more</span>
+      ) : (
+       <span className="material-symbols-outlined">expand_less</span>
+      )}
+     </div>{" "}
+    </div>
+    {showOptions ? (
+     <div className={styles.selectOptions} ref={optionsRef}>
       <ul>
-       {namesSelecteds.map(item => (
-        <li key={item}>{item}</li>
+       {listOptions.map((item: { value: string; label: string }) => (
+        <li key={item.value}>
+         {listOptions.length > 1 ? (
+          <input
+           type="checkbox"
+           checked={selectedItems[listOptions.indexOf(item)]}
+           onChange={() => clickCheckbox(listOptions.indexOf(item), item.label)}
+          />
+         ) : null}
+         {item.label}
+        </li>
        ))}
       </ul>
-     )}
-    </div>
-    {namesSelecteds.length > 0 ? (
-     <div
-      onClick={() => handleClear()}
-      onKeyDown={() => handleClear()}
-      role="button"
-      tabIndex={0}
-      className={styles.selectClear}>
-      <Icons.close />
      </div>
-    ) : null}
-    <div
-     className={styles.selectOpen}
-     onClick={() => clickShowOptions(typeOption, idDependentOption)}
-     onKeyDown={() => clickShowOptions(typeOption, idDependentOption)}
-     role="button"
-     tabIndex={0}>
-     <Icons.arrowDown />
-    </div>{" "}
+    ) : (
+     ""
+    )}
    </div>
-   {showOptions ? (
-    <div className={styles.selectOptions}>
-     <ul>
-      {listOptions.map((item: { value: string; label: string }) => (
-       <li key={item.value}>
-        {listOptions.length > 1 ? (
-         <input
-          type="checkbox"
-          checked={selectedItems[listOptions.indexOf(item)]}
-          onClick={() => clickCheckbox(listOptions.indexOf(item), item.label)}
-         />
-        ) : null}
-        <span>{item.label}</span>
-       </li>
-      ))}
-
-      <span className={styles.button}>
-       <button onClick={() => handleSubmit()}>Enviar opções</button>
-      </span>
-     </ul>
-    </div>
-   ) : (
-    ""
-   )}
   </div>
  );
 }
