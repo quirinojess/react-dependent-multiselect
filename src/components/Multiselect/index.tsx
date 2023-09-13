@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import { Icons } from "../../assets/icons/icons";
 import { filterService } from "../../services/filters";
 
 type Props = {
@@ -173,7 +172,7 @@ export function Multiselect({
       role="button"
       tabIndex={0}
       className={styles.selectClear}>
-      <Icons.close />
+      <span className="material-symbols-outlined">close</span>
      </div>
     ) : null}
     <div
@@ -182,7 +181,11 @@ export function Multiselect({
      onKeyDown={() => clickShowOptions(typeOption, idDependentOption)}
      role="button"
      tabIndex={0}>
-     <Icons.arrowDown />
+     {!showOptions ? (
+      <span className="material-symbols-outlined">expand_more</span>
+     ) : (
+      <span className="material-symbols-outlined">expand_less</span>
+     )}
     </div>{" "}
    </div>
    {showOptions ? (
