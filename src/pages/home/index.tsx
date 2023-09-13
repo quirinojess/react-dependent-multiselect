@@ -4,7 +4,11 @@ import styles from "./index.module.css";
 import { CodeBlock, dracula } from "react-code-blocks";
 
 export function Home() {
- const [filter, setFilter] = useState({
+ const [filter, setFilter] = useState<{
+  carsBrands: string[];
+  carsModels: string[];
+  carsColors: string[];
+ }>({
   carsBrands: [],
   carsModels: [],
   carsColors: [],
