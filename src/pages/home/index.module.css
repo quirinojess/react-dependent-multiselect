@@ -119,6 +119,30 @@ code {
 }
 
 @media (max-width: 900px) {
+ .content p {
+  margin: 30px 0;
+ }
+ .content {
+  width: 100%;
+ }
+
+ .contentDocumentation {
+  width: 95%;
+ }
+
+ .contentDocumentation h3 {
+  font-size: 16px;
+  padding: 10px;
+ }
+
+ .contentDocumentation h3 strong {
+  font-size: 14px;
+ }
+
+ .contentTable {
+  font-size: 12px;
+ }
+
  .gridSelects div {
   width: 90%;
  }
