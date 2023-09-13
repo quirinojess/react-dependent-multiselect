@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 export function RoutesConfig() {
  const ROUTES = [
   {
-   path: "react-dependent-multiselect/",
+   path: "*",
    component: <Home />,
    pageTitle: "React Dependent Multi Select",
   },

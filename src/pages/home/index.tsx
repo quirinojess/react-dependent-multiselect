@@ -289,49 +289,53 @@ export function Home() {
      <strong>Props</strong>
     </p>
     <table>
-     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-     </tr>
-     <tr>
-      <td>typeOption</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>string</td>{" "}
-      <td>Used to call the corresponding api to load data from that select</td>
-     </tr>
-     <tr>
-      <td>label</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>string</td>{" "}
-      <td>For label description</td>
-     </tr>
-     <tr>
-      <td>id</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>string</td>
-      <td>For label select id - Determines an identifier for select</td>
-     </tr>
-     <tr>
-      <td>idClear</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>string</td>
-      <td>
-       Used to clean the filter. It must always be the ID of the next select
-       handleSubmitOptions
-      </td>
-     </tr>
-     <tr>
-      <td>idDependentOption</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>function()</td>
-      <td>Function that sets the data in the main filter</td>
-     </tr>
-     <tr>
-      <td>required</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>boolean</td>
-      <td>If true, shows the description of 'required'</td>
-     </tr>
-     <tr>
-      <td>value</td>{" "}
-      <td className={styles.contentDocumentationHighlight}>string[]</td>
-      <td>Select filter values</td>
-     </tr>
+     <thead>
+      <tr>
+       <th>Name</th>
+       <th>Type</th>
+       <th>Description</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>typeOption</td>
+       <td className={styles.contentDocumentationHighlight}>string</td>
+       <td>Used to call the corresponding api to load data from that select</td>
+      </tr>
+      <tr>
+       <td>label</td>
+       <td className={styles.contentDocumentationHighlight}>string</td>
+       <td>For label description</td>
+      </tr>
+      <tr>
+       <td>id</td>
+       <td className={styles.contentDocumentationHighlight}>string</td>
+       <td>For label select id - Determines an identifier for select</td>
+      </tr>
+      <tr>
+       <td>idClear</td>
+       <td className={styles.contentDocumentationHighlight}>string</td>
+       <td>
+        Used to clean the filter. It must always be the ID of the next select
+        handleSubmitOptions
+       </td>
+      </tr>
+      <tr>
+       <td>idDependentOption</td>
+       <td className={styles.contentDocumentationHighlight}>function()</td>
+       <td>Function that sets the data in the main filter</td>
+      </tr>
+      <tr>
+       <td>required</td>
+       <td className={styles.contentDocumentationHighlight}>boolean</td>
+       <td>If true, shows the description of 'required'</td>
+      </tr>
+      <tr>
+       <td>value</td>
+       <td className={styles.contentDocumentationHighlight}>string[]</td>
+       <td>Select filter values</td>
+      </tr>
+     </tbody>
     </table>
     <hr />
     <h2>Style guide</h2>
