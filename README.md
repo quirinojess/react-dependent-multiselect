@@ -4,7 +4,7 @@ A multi select component that has a dependency on previous field values. Select 
 
 <hr/>
    <h2> History</h2>
-    v1.0 - September 2023 - first version
+    v1.0 - September 2023 - first version    <p>see more details > https://quirinojess.github.io/react-dependent-multiselect/ </p>
     <hr />
     <h2> Usage</h2>
     <h3>
@@ -55,21 +55,21 @@ A multi select component that has a dependency on previous field values. Select 
      </tr>
      <tr>
       <td>typeOption</td>
-      <td  >string</td>{" "}
+      <td  >string</td>
       <td>Used to call the corresponding api to load data from that select</td>
      </tr>
      <tr>
-      <td>label</td>{" "}
-      <td  >string</td>{" "}
+      <td>label</td>
+      <td  >string</td>
       <td>For label description</td>
      </tr>
      <tr>
-      <td>id</td>{" "}
+      <td>id</td>
       <td  >string</td>
       <td>For label select id - Determines an identifier for select</td>
      </tr>
      <tr>
-      <td>idClear</td>{" "}
+      <td>idClear</td>
       <td  >string</td>
       <td>
        Used to clean the filter. It must always be the ID of the next select
@@ -77,17 +77,17 @@ A multi select component that has a dependency on previous field values. Select 
       </td>
      </tr>
      <tr>
-      <td>idDependentOption</td>{" "}
+      <td>idDependentOption</td>
       <td  >function()</td>
       <td>Function that sets the data in the main filter</td>
      </tr>
      <tr>
-      <td>required</td>{" "}
+      <td>required</td>
       <td  >boolean</td>
       <td>If true, shows the description of 'required'</td>
      </tr>
      <tr>
-      <td>value</td>{" "}
+      <td>value</td>
       <td  >string[]</td>
       <td>Select filter values</td>
      </tr>
