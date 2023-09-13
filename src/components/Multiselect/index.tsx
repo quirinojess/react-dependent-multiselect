@@ -36,9 +36,8 @@ export function Multiselect({
  >([]);
  const [namesSelecteds, setNamesSelecteds] = useState<string[]>([]);
 
- async function load(type: string, idDependent: string[]) {
+ async function loadOptions(type: string, idDependent: string[]) {
   const result = await filterService.getForMultiSelect(type, idDependent);
-
   if (result) {
    setListOptions([{ label: "Select All", value: "" }, ...result]);
   }
@@ -52,9 +51,9 @@ export function Multiselect({
 
  function clickShowOptions(type: string, idDependent?: string[]) {
   if (idDependent) {
-   load(type, idDependent);
+   loadOptions(type, idDependent);
   } else if (!idDependent) {
-   load(type, []);
+   loadOptions(type, []);
   }
 
   if (showOptions) {
@@ -110,18 +109,15 @@ export function Multiselect({
  function handleSubmit() {
   const itensTrue: number[] = [];
   const selectedOptions: string[] = [];
-
   selectedItems.forEach((item, index) => {
    if (item === true) {
     itensTrue.push(index);
    }
   });
-
   listOptions.forEach((item, index) => {
    if (itensTrue.includes(index)) {
     selectedOptions.push(item.value);
    }
-
    handleSubmitOptions(id, selectedOptions, idClear);
    setShowOptions(false);
   });
@@ -142,8 +138,14 @@ export function Multiselect({
   }
  }, [value]);
 
+ useEffect(() => {
+  if (!showOptions) {
+   handleSubmit();
+  }
+ }, [!showOptions]);
+
  return (
-  <div>
+  <div className={styles.selectContainer}>
    <div className={styles.label}>
     {label} {required ? "*" : ""}
    </div>
@@ -198,10 +200,6 @@ export function Multiselect({
         <span>{item.label}</span>
        </li>
       ))}
-
-      <span className={styles.button}>
-       <button onClick={() => handleSubmit()}>Enviar opções</button>
-      </span>
      </ul>
     </div>
    ) : (
