@@ -25,10 +25,8 @@ A multi select component that has a dependency on previous field values. Select 
      (HandleSubmitOptions)
     </p>
     <p>
-     <strong>handleClear </strong>- Clears all values and states
+     <strong>handleClear </strong>- Clears all values and states of the defined id
     </p>
-       <code>
-</code>
     <h3>
      In <strong>pages/home</strong> we have an implementation model that
      includes the component and its dependent structures:
@@ -39,6 +37,9 @@ A multi select component that has a dependency on previous field values. Select 
     <p>
      <strong>Function HandleSubmitOptions </strong> - sets the filter according
      to selected values and clear the next select values (according IdClear)
+    </p>
+        <p>
+     <strong>handleClear </strong>- Set filter to initial state
     </p>
     <p>
      <strong> Component </strong> - Calling the component and its properties

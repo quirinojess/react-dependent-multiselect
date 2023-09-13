@@ -34,6 +34,28 @@
  margin: 10px 0;
 }
 
+.contentAlign {
+ display: flex;
+ justify-content: center;
+ margin: 30px 0;
+}
+
+.contentAlign button {
+ display: flex;
+ gap: 0 5px;
+ font-size: 18px;
+ padding: 10px;
+ background: var(--grey-deep);
+ color: white;
+ border: 0;
+ border-radius: 10px;
+ transition: 0.2s ease;
+}
+
+.contentAlign button:hover {
+ background: var(--grey);
+}
+
 .contentDocumentation {
  width: 90%;
  margin: 0 auto;

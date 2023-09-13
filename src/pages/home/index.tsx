@@ -26,6 +26,14 @@ export function Home() {
   }
  }
 
+ function handleClear() {
+  setFilter({
+   carsBrands: [],
+   carsModels: [],
+   carsColors: [],
+  });
+ }
+
  return (
   <div className={styles.content}>
    <div className={styles.contentPreview}>
@@ -69,6 +77,12 @@ export function Home() {
      required
      value={filter.carsColors}
     />
+   </div>
+
+   <div className={styles.contentAlign}>
+    <button onClick={() => handleClear()}>
+     <span className="material-symbols-outlined">delete_sweep</span>Clear filter
+    </button>{" "}
    </div>
 
    <div className={styles.contentDocumentation}>
@@ -176,9 +190,11 @@ export function Home() {
      showLineNumbers={true}
     />
     <p>
-     <strong>handleClear </strong>- Clears all values and states
+     <strong>handleClear </strong>- Clears all values and states of the defined
+     id
     </p>
     <CodeBlock
+     theme={dracula}
      text="    function handleClear() {
         setSelectedItems([]);
         setNamesSelecteds([]);
@@ -229,6 +245,22 @@ export function Home() {
         }
         }"
      language="typescript"
+     showLineNumbers={true}
+    />
+    <p>
+     <strong>handleClear </strong>- Set filter to initial state
+    </p>
+    <CodeBlock
+     theme={dracula}
+     text="     function handleClear() {
+      setFilter({
+       carsBrands: [],
+       carsModels: [],
+       carsColors: [],
+      });
+     }
+  "
+     language="javascript"
      showLineNumbers={true}
     />
     <p>
