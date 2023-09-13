@@ -5,14 +5,14 @@ import { Route, Routes } from "react-router-dom";
 export function RoutesConfig() {
  const ROUTES = [
   {
-   path: "/",
+   path: "react-dependent-multiselect/",
    component: <Home />,
    pageTitle: "React Dependent Multi Select",
   },
  ];
 
  return (
-  <Routes basename={process.env.PUBLIC_URL}>
+  <Routes>
    {ROUTES.map(route => (
     <Route
      key={route.path}
