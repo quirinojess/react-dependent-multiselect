@@ -288,7 +288,7 @@ export function Home() {
     <p>
      <strong>Props</strong>
     </p>
-    <table>
+    <table className={styles.contentTable}>
      <thead>
       <tr>
        <th>Name</th>
@@ -317,11 +317,15 @@ export function Home() {
        <td className={styles.contentDocumentationHighlight}>string</td>
        <td>
         Used to clean the filter. It must always be the ID of the next select
-        handleSubmitOptions
        </td>
       </tr>
       <tr>
-       <td>idDependentOption</td>
+       <td>idDependent Option</td>
+       <td className={styles.contentDocumentationHighlight}>string</td>
+       <td>Defines the select it depends on</td>
+      </tr>
+      <tr>
+       <td> handle Submit Options</td>
        <td className={styles.contentDocumentationHighlight}>function()</td>
        <td>Function that sets the data in the main filter</td>
       </tr>

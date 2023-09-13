@@ -1,3 +1,7 @@
+code {
+ max-width: 90%;
+}
+
 .content {
  width: 80%;
  margin: 0 auto;
@@ -30,7 +34,7 @@
  gap: 0 50px;
 }
 .gridSelects div {
- width: 30.3%;
+ width: 28%;
  margin: 10px 0;
 }
 
@@ -87,25 +91,35 @@
  border-color: var(--off-white);
 }
 
-.contentDocumentation table {
+.contentTable {
  margin: 20px 0;
  line-height: 30px;
+ table-layout: fixed;
+ width: 100%;
+ overflow-x: auto;
 }
-.contentDocumentation th {
+.contentTable th {
  font-size: 14px;
  background: var(--grey);
  color: var(--white);
+ word-break: break-all;
 }
 
-.contentDocumentation tr {
+.contentTable tr {
  border: 1px solid;
  border-color: var(--light-grey);
 }
-.contentDocumentation td {
- padding: 10px 20px;
+.contentTable td {
+ padding: 10px;
  background: var(--grey-light);
 }
 
 .contentDocumentationHighlight {
  background: var(--off-white) !important;
+}
+
+@media (max-width: 900px) {
+ .gridSelects div {
+  width: 90%;
+ }
 }
