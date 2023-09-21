@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Multiselect } from "../../components/Multiselect";
 import styles from "./index.module.css";
 import { CodeBlock, dracula } from "react-code-blocks";
+import { Icons } from "../../assets/icons";
 
 export function Home() {
  const [filter, setFilter] = useState<{
@@ -502,6 +503,14 @@ export function Home() {
      any suggestions, please make your contribution.
     </p>
     <h5>Give a ⭐️ if this project helped you! Thank You!</h5>
+   </div>
+   <div className={styles.git}>
+    <Icons.git />
+    <a
+     target="_blank"
+     href="https://github.com/quirinojess/react-dependent-multiselect">
+     See in Git Hub
+    </a>
    </div>
   </div>
  );

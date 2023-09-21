@@ -118,6 +118,44 @@ code {
  background: var(--off-white) !important;
 }
 
+.git {
+ background: var(--grey-deep);
+ padding: 10px 20px;
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ width: 30px;
+ text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ transition: 0.4s ease;
+}
+
+.git a {
+ font-weight: 600;
+ font-size: 12px;
+ color: var(--white);
+ text-decoration: none;
+}
+
+.git svg {
+ width: 30px;
+ fill: var(--white);
+}
+
+.git:hover {
+ background: var(--white);
+}
+
+.git a:hover {
+ color: var(--grey-deep);
+}
+
+.git:hover svg {
+ fill: var(--grey-deep);
+}
+
 @media (max-width: 900px) {
  .content p {
   margin: 30px 0;
@@ -145,5 +183,18 @@ code {
 
  .gridSelects div {
   width: 90%;
+ }
+
+ .git {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0 5px;
+ }
+
+ .git svg {
+  width: 20px;
  }
 }
